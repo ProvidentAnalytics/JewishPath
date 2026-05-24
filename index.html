@@ -1,613 +1,878 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jewish Path — Support Torah Study & Mitzvot Advancement</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jewish Path | Torah Study &amp; Mitzvos Advancement</title>
+  <meta name="description" content="Support Jewish Path, a 501(c)(3) nonprofit advancing Torah study and mitzvos through learning programs and community support.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --rose:       #c4906e;
+      --rose: #c4906e;
       --rose-light: #e8c9b5;
-      --rose-deep:  #a0705a;
-      --ink:        #2c2c2c;
-      --ink-soft:   #5a5a5a;
-      --ink-muted:  #8a8a8a;
-      --cream:      #faf8f5;
-      --parchment:  #f2ede6;
-      --white:      #ffffff;
+      --rose-deep: #9f6b51;
+      --ink: #2b2b2b;
+      --ink-soft: #5a5a5a;
+      --ink-muted: #878787;
+      --cream: #faf8f5;
+      --parchment: #f2ede6;
+      --white: #ffffff;
+      --shadow: 0 18px 60px rgba(44, 44, 44, 0.10);
+      --line: rgba(196, 144, 110, 0.18);
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+    body {
+      min-height: 100vh;
+      font-family: 'Jost', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button, input, textarea { font: inherit; }
 
-    /* HERO */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     .hero {
       position: relative;
       min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      display: grid;
+      place-items: center;
+      padding: 4rem 1.25rem 5.5rem;
       text-align: center;
-      padding: 4rem 1.5rem 6rem;
-      background: #faf8f5;
       overflow: hidden;
+      isolation: isolate;
     }
+    .hero::before,
+    .hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(196, 144, 110, 0.12), transparent 66%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .hero::before { width: 520px; height: 520px; top: -180px; left: -160px; }
+    .hero::after { width: 560px; height: 560px; right: -220px; bottom: -240px; }
 
-
-    /* בס״ד */
     .bsd {
-      position: absolute; top: 1.25rem; right: 1.5rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem; font-weight: 400;
-      color: var(--rose); opacity: 0.75;
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      color: var(--rose);
+      opacity: 0.8;
       letter-spacing: 0.05em;
-      z-index: 10;
     }
 
-    .logo-wrap { width: 190px; height: 190px; margin: 0 auto 1.75rem; animation: fadeUp 0.9s ease both; }
-    .logo-wrap img { width: 100%; height: 100%; object-fit: contain; }
-
+    .hero-inner {
+      width: min(100%, 780px);
+      animation: fadeUp 0.85s ease both;
+    }
+    .hero-logo {
+      width: min(92vw, 520px);
+      margin: 0 auto 2rem;
+      object-fit: contain;
+      filter: drop-shadow(0 18px 34px rgba(44, 44, 44, 0.06));
+    }
     .eyebrow {
-      font-size: 0.75rem; letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--rose); margin-bottom: 1rem;
-      animation: fadeUp 0.9s 0.1s ease both; opacity: 0; animation-fill-mode: both;
+      margin-bottom: 1rem;
+      color: var(--rose-deep);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
     }
     .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.4rem, 8vw, 6rem);
-      font-weight: 300; line-height: 1.1; color: var(--ink); margin-bottom: 1.25rem;
-      animation: fadeUp 0.9s 0.2s ease both; opacity: 0; animation-fill-mode: both;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3rem, 7.5vw, 5.75rem);
+      font-weight: 300;
+      line-height: 1.04;
+      color: var(--ink);
+      letter-spacing: -0.025em;
     }
-    .hero h1 em { font-style: italic; color: var(--rose); }
-
+    .hero h1 em { color: var(--rose); font-style: italic; }
     .rose-rule {
-      width: 40px; height: 1.5px;
-      background: linear-gradient(90deg, var(--rose), var(--rose-light));
-      margin: 0 auto 2rem;
-      animation: fadeUp 0.9s 0.28s ease both; opacity: 0; animation-fill-mode: both;
+      width: 46px;
+      height: 1.5px;
+      margin: 1.65rem auto 1.75rem;
+      background: linear-gradient(90deg, transparent, var(--rose), var(--rose-light), transparent);
     }
     .hero-body {
-      font-size: 1.1rem; font-weight: 300; line-height: 1.85; color: var(--ink-soft);
-      max-width: 510px; margin: 0 auto 2.5rem;
-      animation: fadeUp 0.9s 0.35s ease both; opacity: 0; animation-fill-mode: both;
+      max-width: 610px;
+      margin: 0 auto;
+      color: var(--ink-soft);
+      font-size: clamp(1rem, 2.3vw, 1.13rem);
+      font-weight: 300;
+      line-height: 1.85;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.85rem;
+      margin-top: 2.35rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 48px;
+      padding: 0.8rem 1.45rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.83rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+      box-shadow: 0 10px 28px rgba(196, 144, 110, 0.36);
+    }
+    .btn-secondary {
+      color: var(--rose-deep);
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 26px rgba(44, 44, 44, 0.05);
     }
     .scroll-cue {
-      color: var(--rose-light); font-size: 1.4rem; cursor: pointer;
-      animation: fadeUp 0.9s 0.5s ease both, bounce 2s 1.5s ease-in-out infinite;
-      opacity: 0; animation-fill-mode: both; display: inline-block;
+      position: absolute;
+      left: 50%;
+      bottom: 1.65rem;
+      transform: translateX(-50%);
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(196, 144, 110, 0.25);
+      color: var(--rose);
+      text-decoration: none;
+      animation: bounce 2.1s ease-in-out infinite;
     }
 
-    /* SECTION */
-    .section { padding: 5.5rem 1.5rem; max-width: 980px; margin: 0 auto; }
-    .band { background: var(--parchment); border-top: 1px solid rgba(196,144,110,0.15); border-bottom: 1px solid rgba(196,144,110,0.15); }
-
-    .section-label { font-size: 0.65rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.5rem; }
-    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400; color: var(--ink); margin-bottom: 1rem; line-height: 1.2; }
-    .section-divider { width: 40px; height: 1.5px; background: var(--rose); margin: 0 0 1.75rem; }
-    .section-intro { font-size: 0.93rem; font-weight: 300; color: var(--ink-soft); max-width: 580px; line-height: 1.8; margin-bottom: 3rem; }
-
-    /* CARDS */
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); gap: 1.5rem; }
-
-    .card {
-      background: var(--white); border-radius: 18px;
-      border: 1px solid rgba(196,144,110,0.14);
-      padding: 2rem 1.75rem;
-      box-shadow: 0 4px 36px rgba(44,44,44,0.07);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative; overflow: hidden;
+    .band {
+      background: var(--parchment);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
-    .card::after {
-      content: ''; position: absolute; top: 0; left: 0;
-      width: 100%; height: 2.5px;
-      background: linear-gradient(90deg, var(--rose), var(--rose-light));
-      transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
+    .section {
+      width: min(100%, 1030px);
+      margin: 0 auto;
+      padding: 5.6rem 1.25rem;
     }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 16px 52px rgba(44,44,44,0.10); }
-    .card:hover::after { transform: scaleX(1); }
-
-    .card-icon {
-      width: 46px; height: 46px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--parchment), #ede5d8);
-      border: 1px solid rgba(196,144,110,0.2);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.25rem; font-size: 1.3rem;
+    .section-narrow { width: min(100%, 760px); }
+    .section-label {
+      margin-bottom: 0.55rem;
+      color: var(--rose-deep);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.23em;
+      text-transform: uppercase;
     }
-    .card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--ink); margin-bottom: 0.9rem; }
-    .card-note { font-size: 0.8rem; color: var(--ink-muted); line-height: 1.75; margin-bottom: 0.9rem; font-weight: 300; }
-
-    .field-label {
-      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--ink-muted); font-weight: 500; margin-top: 0.85rem; margin-bottom: 0.2rem; display: block;
+    .section-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.15rem, 5vw, 3.25rem);
+      font-weight: 400;
+      line-height: 1.16;
+      color: var(--ink);
     }
-    .field-label:first-of-type { margin-top: 0; }
-
-    .copy-row {
-      display: flex; align-items: center; gap: 0.5rem;
-      background: var(--parchment); border-radius: 8px; padding: 0.5rem 0.8rem;
-      cursor: pointer; transition: background 0.2s, transform 0.15s; user-select: none;
+    .section-divider {
+      width: 44px;
+      height: 1.5px;
+      margin: 1.2rem 0 1.7rem;
+      background: var(--rose);
     }
-    .copy-row:hover { background: var(--rose-light); transform: scale(1.01); }
-    .copy-row span { font-size: 0.85rem; color: var(--ink); flex: 1; font-weight: 400; }
-    .copy-row svg { opacity: 0.45; flex-shrink: 0; }
-
-    .tag {
-      display: inline-block; font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase;
-      background: rgba(196,144,110,0.18); color: var(--rose-deep);
-      padding: 0.12rem 0.4rem; border-radius: 4px; margin-left: 0.35rem; vertical-align: middle;
+    .section-intro {
+      max-width: 620px;
+      margin-bottom: 2.6rem;
+      color: var(--ink-soft);
+      font-size: 0.96rem;
+      font-weight: 300;
+      line-height: 1.85;
     }
 
-    .routing-group { border: 1px solid rgba(196,144,110,0.18); border-radius: 10px; overflow: hidden; }
-    .routing-group .copy-row { border-radius: 0; border-bottom: 1px solid rgba(196,144,110,0.1); }
-    .routing-group .copy-row:last-child { border-bottom: none; }
-
-    .btn-square {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      margin-top: 1.25rem; padding: 0.85rem 2rem;
-      background: linear-gradient(135deg, var(--rose), var(--rose-deep));
-      color: #fff; font-family: 'Jost', sans-serif;
-      font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em;
-      text-decoration: none; border-radius: 50px;
-      transition: opacity 0.25s, transform 0.25s, box-shadow 0.25s;
-      box-shadow: 0 4px 20px rgba(196,144,110,0.35);
-    }
-    .btn-square:hover { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,144,110,0.45); }
-
-    /* TAX NOTE */
     .tax-note {
-      display: flex; align-items: flex-start; gap: 1rem;
-      background: linear-gradient(135deg, rgba(196,144,110,0.06), rgba(196,144,110,0.03));
-      border: 1px solid rgba(196,144,110,0.2); border-radius: 14px;
-      padding: 1.25rem 1.5rem; margin-bottom: 2.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding: 1.25rem 1.35rem;
+      border: 1px solid rgba(196, 144, 110, 0.24);
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.25));
     }
-    .tax-note .ti { font-size: 1.3rem; flex-shrink: 0; }
-    .tax-note p { font-size: 0.83rem; color: var(--ink-soft); line-height: 1.75; font-weight: 300; }
+    .tax-note .ti { flex: 0 0 auto; font-size: 1.35rem; line-height: 1; }
+    .tax-note p { color: var(--ink-soft); font-size: 0.87rem; font-weight: 300; line-height: 1.8; }
     .tax-note strong { color: var(--ink); font-weight: 500; }
 
-    /* THANK YOU */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.35rem;
+    }
+    .card {
+      position: relative;
+      overflow: hidden;
+      min-height: 100%;
+      padding: 2rem 1.55rem;
+      border: 1px solid rgba(196, 144, 110, 0.15);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 8px 38px rgba(44, 44, 44, 0.07);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto;
+      height: 3px;
+      background: linear-gradient(90deg, var(--rose), var(--rose-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .card:hover::before { transform: scaleX(1); }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.2rem;
+      border: 1px solid rgba(196, 144, 110, 0.22);
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--parchment), #eadfce);
+      font-size: 1.25rem;
+    }
+    .card h3 {
+      margin-bottom: 0.8rem;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .card-note {
+      margin-bottom: 1rem;
+      color: var(--ink-soft);
+      font-size: 0.84rem;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    .field-label {
+      display: block;
+      margin: 0.9rem 0 0.32rem;
+      color: var(--ink-muted);
+      font-size: 0.64rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .field-label:first-of-type { margin-top: 0; }
+    .copy-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.58rem 0.72rem;
+      border: 0;
+      border-radius: 10px;
+      background: var(--parchment);
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .copy-row:hover,
+    .copy-row:focus-visible {
+      background: var(--rose-light);
+      transform: translateY(-1px);
+      outline: none;
+    }
+    .copy-row span { min-width: 0; flex: 1; font-size: 0.85rem; overflow-wrap: anywhere; }
+    .copy-row svg { flex: 0 0 auto; opacity: 0.48; }
+    .routing-group {
+      overflow: hidden;
+      border: 1px solid rgba(196, 144, 110, 0.16);
+      border-radius: 11px;
+    }
+    .routing-group .copy-row { border-radius: 0; border-bottom: 1px solid rgba(196, 144, 110, 0.12); }
+    .routing-group .copy-row:last-child { border-bottom: 0; }
+    .tag {
+      display: inline-block;
+      margin-left: 0.35rem;
+      padding: 0.12rem 0.38rem;
+      border-radius: 5px;
+      background: rgba(196, 144, 110, 0.19);
+      color: var(--rose-deep);
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      vertical-align: middle;
+    }
+
     .thank-you {
-      background: var(--ink); padding: 6rem 1.5rem;
-      text-align: center; position: relative; overflow: hidden;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      padding: 6.3rem 1.25rem;
+      text-align: center;
+      background: radial-gradient(circle at 50% 20%, rgba(196, 144, 110, 0.18), transparent 34%), var(--ink);
     }
-    .thank-you .bg-logo {
-      position: absolute; width: 460px; height: 460px;
-      top: 50%; left: 50%; transform: translate(-50%, -50%);
-      opacity: 0.04; object-fit: contain; pointer-events: none;
+    .thank-you::before {
+      content: '';
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(232, 201, 181, 0.08);
+      border-radius: 999px;
+      z-index: -1;
     }
-    .ty-eyebrow { font-size: 0.65rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--rose-light); margin-bottom: 1.25rem; position: relative; }
+    .ty-eyebrow {
+      margin-bottom: 1.15rem;
+      color: var(--rose-light);
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
     .thank-you h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 300; line-height: 1.15;
-      color: #fff; margin-bottom: 2.5rem; position: relative;
+      margin-bottom: 2.35rem;
+      color: #fff;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.25rem, 5.8vw, 4.05rem);
+      font-weight: 300;
+      line-height: 1.12;
     }
-    .thank-you h2 em { font-style: italic; color: var(--rose-light); }
-
-    .thank-you-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 800px; margin: 0 auto; position: relative; }
-    .ty-col {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(196,144,110,0.2);
-      border-radius: 16px; padding: 2rem 1.75rem; text-align: left;
-    }
-    .ty-col .ty-icon { font-size: 1.6rem; margin-bottom: 0.9rem; }
-    .ty-col h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--rose-light); margin-bottom: 0.75rem; }
-    .ty-col p { font-size: 0.88rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.62); }
-
-    /* FOOTER */
-    footer {
-      text-align: center; padding: 2.25rem 1.5rem;
-      font-size: 0.77rem; color: var(--ink-muted);
-      background: var(--parchment); border-top: 1px solid rgba(196,144,110,0.15);
-      line-height: 2;
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
-
-    .reveal { opacity: 0; }
-    .revealed { animation: fadeUp 0.7s ease both; }
-
-    /* TOAST */
-    .toast {
-      position: fixed; bottom: 1.75rem; right: 1.75rem;
-      background: var(--ink); color: #fff;
-      padding: 0.6rem 1.2rem; border-radius: 8px; font-size: 0.81rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s;
-      z-index: 999; border-left: 3px solid var(--rose);
-    }
-    .toast.show { opacity: 1; }
-
-    /* CONTACT FORM */
-    .contact-section {
-      background: var(--cream);
-      padding: 5.5rem 1.5rem;
-    }
-    .contact-inner {
-      max-width: 680px;
+    .thank-you h2 em { color: var(--rose-light); font-style: italic; }
+    .thank-you-cols {
+      width: min(100%, 840px);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
       margin: 0 auto;
     }
-    .contact-form {
-      background: var(--white);
-      border: 1px solid rgba(196,144,110,0.18);
-      border-radius: 20px;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 4px 36px rgba(44,44,44,0.07);
-      margin-top: 2.5rem;
+    .ty-col {
+      padding: 1.8rem 1.55rem;
+      border: 1px solid rgba(232, 201, 181, 0.18);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.045);
+      text-align: left;
+      backdrop-filter: blur(4px);
     }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem; }
+    .ty-icon { margin-bottom: 0.85rem; font-size: 1.45rem; }
+    .ty-col h3 {
+      margin-bottom: 0.72rem;
+      color: var(--rose-light);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+    }
+    .ty-col p {
+      color: rgba(255, 255, 255, 0.66);
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.85;
+    }
+
+    .contact-section { background: var(--cream); }
+    .contact-head { text-align: center; }
+    .contact-head .section-divider { margin-left: auto; margin-right: auto; }
+    .contact-head .section-intro { margin-left: auto; margin-right: auto; margin-bottom: 0; }
+    .contact-form {
+      margin-top: 2.5rem;
+      padding: 2.35rem;
+      border: 1px solid rgba(196, 144, 110, 0.17);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 10px 44px rgba(44, 44, 44, 0.07);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    .form-group { margin-bottom: 1.2rem; }
     .form-group label {
-      font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--ink-muted); font-weight: 500;
+      display: block;
+      margin-bottom: 0.42rem;
+      color: var(--ink-muted);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
     .form-group input,
     .form-group textarea {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.9rem; font-weight: 300;
-      color: var(--ink);
-      background: var(--parchment);
-      border: 1px solid rgba(196,144,110,0.2);
-      border-radius: 10px;
-      padding: 0.75rem 1rem;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
       width: 100%;
+      padding: 0.82rem 0.95rem;
+      border: 1px solid rgba(196, 144, 110, 0.22);
+      border-radius: 11px;
+      background: var(--parchment);
+      color: var(--ink);
+      font-size: 0.92rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
+    .form-group textarea { min-height: 118px; resize: vertical; line-height: 1.7; }
     .form-group input:focus,
     .form-group textarea:focus {
       border-color: var(--rose);
-      box-shadow: 0 0 0 3px rgba(196,144,110,0.12);
-      background: var(--white);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(196, 144, 110, 0.12);
     }
-    .form-group textarea { resize: vertical; min-height: 110px; line-height: 1.7; }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: var(--ink-muted); opacity: 0.7; }
-
-    .btn-submit {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.9rem 2.25rem;
-      background: linear-gradient(135deg, var(--rose), var(--rose-deep));
-      color: #fff; font-family: 'Jost', sans-serif;
-      font-size: 0.9rem; font-weight: 500; letter-spacing: 0.06em;
-      border: none; border-radius: 50px; cursor: pointer;
-      transition: opacity 0.25s, transform 0.25s, box-shadow 0.25s;
-      box-shadow: 0 4px 20px rgba(196,144,110,0.35);
+    .form-note {
+      margin-top: 0.85rem;
+      color: var(--ink-muted);
+      font-size: 0.78rem;
+      font-weight: 300;
+      line-height: 1.6;
     }
-    .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,144,110,0.45); }
 
-    /* UPGRADED FOOTER */
     footer {
+      color: rgba(255, 255, 255, 0.56);
       background: var(--ink);
-      color: rgba(255,255,255,0.55);
-      padding: 0;
     }
     .footer-contact {
-      background: linear-gradient(135deg, #1a1a1a, #2c2420);
-      border-top: 2px solid var(--rose);
-      padding: 3rem 1.5rem;
+      padding: 3.2rem 1.25rem;
       text-align: center;
+      background: linear-gradient(135deg, #191919, #2d241f);
+      border-top: 2px solid var(--rose);
     }
-    .footer-contact h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem; font-weight: 400;
-      color: var(--white); margin-bottom: 0.4rem;
+    .footer-contact h2 {
+      margin-bottom: 0.35rem;
+      color: #fff;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.75rem;
+      font-weight: 400;
     }
-    .footer-contact .fc-title {
-      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--rose-light); margin-bottom: 1.75rem;
+    .fc-title {
+      margin-bottom: 1.6rem;
+      color: var(--rose-light);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
     }
     .footer-contact-links {
-      display: flex; flex-wrap: wrap;
-      align-items: center; justify-content: center;
-      gap: 1rem 2rem; margin-bottom: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
     }
     .footer-contact-links a {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      color: var(--white);
-      font-size: 1rem; font-weight: 400;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.68rem 1.12rem;
+      border: 1px solid rgba(196, 144, 110, 0.32);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
       text-decoration: none;
-      padding: 0.6rem 1.25rem;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(196,144,110,0.3);
-      border-radius: 50px;
-      transition: background 0.2s, border-color 0.2s;
+      transition: background 0.2s ease, border-color 0.2s ease;
     }
-    .footer-contact-links a:hover { background: rgba(196,144,110,0.18); border-color: var(--rose); }
+    .footer-contact-links a:hover { background: rgba(196, 144, 110, 0.16); border-color: var(--rose); }
     .footer-legal {
-      padding: 1.5rem 1.5rem;
+      padding: 1.45rem 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      color: rgba(255, 255, 255, 0.36);
       text-align: center;
-      font-size: 0.74rem;
-      color: rgba(255,255,255,0.35);
-      line-height: 2;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.75rem;
+      line-height: 1.85;
     }
 
-    @media (max-width: 640px) {
+    .toast {
+      position: fixed;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      z-index: 20;
+      padding: 0.7rem 1rem;
+      border-left: 3px solid var(--rose);
+      border-radius: 10px;
+      background: var(--ink);
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      font-size: 0.84rem;
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    .reveal { opacity: 0; transform: translateY(18px); }
+    .revealed { animation: fadeUp 0.68s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, 7px); }
+    }
+
+    @media (max-width: 900px) {
       .cards-grid { grid-template-columns: 1fr; }
+      .card { padding: 1.75rem 1.35rem; }
+    }
+    @media (max-width: 680px) {
+      .hero { padding-top: 4.75rem; }
+      .hero-logo { width: min(92vw, 390px); margin-bottom: 1.5rem; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+      .section { padding: 4.35rem 1.1rem; }
+      .tax-note { flex-direction: column; }
+      .thank-you { padding: 4.7rem 1.1rem; }
       .thank-you-cols { grid-template-columns: 1fr; }
-      .logo-wrap { width: 150px; height: 150px; }
-      .form-row { grid-template-columns: 1fr; }
-      .contact-form { padding: 1.75rem 1.25rem; }
-      .footer-contact-links { flex-direction: column; gap: 0.75rem; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .contact-form { padding: 1.6rem 1.15rem; }
+      .footer-contact-links { flex-direction: column; align-items: stretch; }
+      .footer-contact-links a { justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
+  <header class="hero">
+    <span class="bsd" aria-label="Besiyata Dishmaya">&#1489;&#1505;&#1524;&#1491;</span>
 
-<!-- ══════════════════════ HERO ══════════════════════ -->
-<header class="hero">
-  <span class="bsd">בס״ד</span>
-  <div class="logo-wrap">
-    <img src="logo.png" alt="Jewish Path Logo">
-  </div>
-
-  <p class="eyebrow">Torah Study &amp; Mitzvot Advancement</p>
-
-  <h1>Jewish Path<br><em>Walk it. Live it. Give it.</em></h1>
-
-  <div class="rose-rule"></div>
-
-  <p class="hero-body">
-    Every step on the path of Torah — every shiur learned, every mitzvah embraced,
-    every soul ignited — is made possible by the generosity of people like you.
-    Your support helps us illuminate the way for Jews at every stage of their journey.
-  </p>
-
-  <span class="scroll-cue" onclick="document.getElementById('give').scrollIntoView({behavior:'smooth'})">↓</span>
-</header>
-
-
-<!-- ══════════════════════ GIVE ══════════════════════ -->
-<section id="give" class="band">
-  <div class="section">
-    <p class="section-label">Ways to Give</p>
-    <h2 class="section-title">Choose the pathway<br>that works for you.</h2>
-    <div class="section-divider"></div>
-    <p class="section-intro">
-      We offer several convenient ways to donate. Every gift goes directly toward
-      expanding Torah study programs and mitzvot advancement. Thank you for your
-      chesed and your trust.
-    </p>
-
-    <!-- TAX NOTE — shown first so donors see it immediately -->
-    <div class="tax-note reveal">
-      <span class="ti">📋</span>
-      <p>
-        <strong>Tax-Deductible Giving</strong><br>
-        Jewish Path is a registered 501(c)(3) nonprofit organization.
-        All donations are tax-deductible to the extent permitted by law.
-        <strong>Tax ID (EIN): 99-4241683.</strong>
-        A donation receipt will be provided upon request.
+    <div class="hero-inner">
+      <img class="hero-logo" src="logo.png" alt="Jewish Path - Torah Study &amp; Mitzvos Advancement">
+      <p class="eyebrow">Support Torah Study &amp; Mitzvos Advancement</p>
+      <h1>Walk it. <em>Live it.</em><br>Give it.</h1>
+      <div class="rose-rule" aria-hidden="true"></div>
+      <p class="hero-body">
+        Every step on the path of Torah - every shiur learned, every mitzvah embraced,
+        every soul ignited - is made possible by the generosity of people like you.
+        Your support helps illuminate the way for Jews at every stage of their journey.
       </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#give">Ways to Give</a>
+        <a class="btn btn-secondary" href="#contact">Contact Us</a>
+      </div>
     </div>
 
-    <div class="cards-grid">
+    <a class="scroll-cue" href="#give" aria-label="Scroll to donation options">&#8595;</a>
+  </header>
 
-      <!-- ZELLE -->
-      <div class="card reveal">
-        <div class="card-icon">⚡</div>
-        <h3>Zelle</h3>
-        <p class="card-note">
-          The fastest way to give — instant, no fees, 100% of your gift arrives.
-          Open your banking app, choose Zelle, and send to:
+  <main>
+    <section id="give" class="band">
+      <div class="section">
+        <p class="section-label">Ways to Give</p>
+        <h2 class="section-title">Choose the pathway<br>that works for you.</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <p class="section-intro">
+          We offer several convenient ways to donate. Every gift goes directly toward
+          expanding Torah study programs and mitzvos advancement. Thank you for your
+          chesed and your trust.
         </p>
 
-        <span class="field-label">Zelle Email</span>
-        <div class="copy-row" onclick="copyText('ariezaslavsky@gmail.com', this)">
-          <span>ariezaslavsky@gmail.com</span>
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <div class="tax-note reveal">
+          <span class="ti" aria-hidden="true">&#128203;</span>
+          <p>
+            <strong>Tax-Deductible Giving</strong><br>
+            Jewish Path is a registered 501(c)(3) nonprofit organization.
+            All donations are tax-deductible to the extent permitted by law.
+            <strong>Tax ID (EIN): 99-4241683.</strong>
+            A donation receipt will be provided upon request.
+          </p>
         </div>
 
-        <p class="card-note" style="margin-top:1rem; font-style:italic;">
-          Please include "Jewish Path donation" in the memo so we can send
-          you a tax receipt.
-        </p>
+        <div class="cards-grid">
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">&#9889;</div>
+            <h3>Zelle</h3>
+            <p class="card-note">
+              The fastest way to give - instant, no fees, and 100% of your gift arrives.
+              Open your banking app, choose Zelle, and send to:
+            </p>
+
+            <span class="field-label">Zelle Email</span>
+            <button class="copy-row" type="button" data-copy="ariezaslavsky@gmail.com">
+              <span>ariezaslavsky@gmail.com</span>
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+
+            <p class="card-note" style="margin-top:1rem; font-style:italic;">
+              Please include "Jewish Path donation" in the memo so a tax receipt can be sent.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">&#128179;</div>
+            <h3>Credit or Debit Card</h3>
+            <p class="card-note">
+              Donate securely online using any major credit or debit card through our Square giving page.
+              It takes less than a minute, and no account is needed.
+            </p>
+
+            <a class="btn btn-primary" href="https://tinyurl.com/jewishpath" target="_blank" rel="noopener">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg>
+              Donate via Square
+            </a>
+
+            <p class="card-note" style="margin-top:1rem; font-size:0.78rem;">
+              Secured by Square - payment details are encrypted.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon" aria-hidden="true">&#127963;&#65039;</div>
+            <h3>Wire &amp; ACH Transfer</h3>
+            <p class="card-note">
+              For larger gifts or institutional transfers. Use the wire routing for same-day wires,
+              or ACH for standard bank transfers.
+            </p>
+
+            <span class="field-label">Beneficiary</span>
+            <button class="copy-row" type="button" data-copy="Jewish Path">
+              <span>Jewish Path</span>
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+
+            <span class="field-label">Bank</span>
+            <button class="copy-row" type="button" data-copy="JPMorgan Chase Bank, N.A.">
+              <span>JPMorgan Chase Bank, N.A.</span>
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+
+            <span class="field-label">Routing Number</span>
+            <div class="routing-group">
+              <button class="copy-row" type="button" data-copy="021000021">
+                <span>021000021 <span class="tag">Wire</span></span>
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
+              <button class="copy-row" type="button" data-copy="071000013">
+                <span>071000013 <span class="tag">ACH</span></span>
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
+            </div>
+
+            <span class="field-label">Account Number</span>
+            <button class="copy-row" type="button" data-copy="668129359">
+              <span>668129359</span>
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <!-- CREDIT CARD -->
-      <div class="card reveal">
-        <div class="card-icon">💳</div>
-        <h3>Credit or Debit Card</h3>
-        <p class="card-note">
-          Donate securely online using any major credit or debit card through
-          our Square giving page. Takes less than a minute — no account needed.
-        </p>
+    <section class="thank-you">
+      <p class="ty-eyebrow">From the Jewish Path family</p>
+      <h2>Thank you for being<br><em>part of this journey.</em></h2>
 
-        <a class="btn-square" href="https://tinyurl.com/jewishpath" target="_blank" rel="noopener">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-          Donate via Square
+      <div class="thank-you-cols">
+        <article class="ty-col reveal">
+          <div class="ty-icon" aria-hidden="true">&#128214;</div>
+          <h3>To Our Learners</h3>
+          <p>
+            Every hour you invest in Torah, every mitzvah you embrace, every question you carry into study -
+            you are the heartbeat of Jewish Path. Your commitment to growth is an inspiration and a testament
+            to the eternal light of Am Yisrael. Keep walking the path. Tizku lemitzvos.
+          </p>
+        </article>
+
+        <article class="ty-col reveal">
+          <div class="ty-icon" aria-hidden="true">&#128330;&#65039;</div>
+          <h3>To Our Donors</h3>
+          <p>
+            Your generosity makes the next shiur possible - the next program launched, the next life transformed.
+            You are true partners in Torah. Every dollar fuels the expansion of the mission and lights the path
+            for souls yet to begin their journey. Yeyasher kochacha.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="section section-narrow">
+        <div class="contact-head">
+          <p class="section-label">Get in Touch</p>
+          <h2 class="section-title">We would love to<br>hear from you.</h2>
+          <div class="section-divider" aria-hidden="true"></div>
+          <p class="section-intro">
+            Questions about programs, donations, or how to get involved?
+            Rabbi Arieh and the team are here to help.
+          </p>
+        </div>
+
+        <form id="contactForm" class="contact-form reveal" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-contact-email="ariezaslavsky@gmail.com">
+          <input type="hidden" name="_subject" value="Jewish Path Website Inquiry">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fc-name">Full Name <span style="color:var(--rose);">*</span></label>
+              <input id="fc-name" type="text" name="name" placeholder="Your name" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+              <label for="fc-phone">Phone Number <span style="color:var(--rose);">*</span></label>
+              <input id="fc-phone" type="tel" name="phone" placeholder="(000) 000-0000" autocomplete="tel" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fc-email">Email Address <span style="color:var(--rose);">*</span></label>
+            <input id="fc-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="fc-message">Message</label>
+            <textarea id="fc-message" name="message" placeholder="How can we help you?"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            Send Message
+          </button>
+          <p class="form-note">For direct contact, call 773-217-3301 or email ariezaslavsky@gmail.com.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-contact">
+      <h2>Rabbi Arieh Zaslavsky</h2>
+      <p class="fc-title">Jewish Path - Torah Study &amp; Mitzvos Advancement</p>
+      <div class="footer-contact-links">
+        <a href="tel:7732173301">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6.5-6.5A19.79 19.79 0 0 1 1.61 5a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11l-.94.94a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          773-217-3301
         </a>
-
-        <p class="card-note" style="margin-top:1rem; font-size:0.77rem;">
-          Secured by Square — your payment details are fully encrypted.
-        </p>
+        <a href="mailto:ariezaslavsky@gmail.com">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          ariezaslavsky@gmail.com
+        </a>
       </div>
-
-      <!-- WIRE / ACH -->
-      <div class="card reveal">
-        <div class="card-icon">🏛️</div>
-        <h3>Wire &amp; ACH Transfer</h3>
-        <p class="card-note">
-          For larger gifts or institutional transfers. Use the Wire routing for
-          same-day wires, or ACH for standard bank transfers.
-        </p>
-
-        <span class="field-label">Beneficiary</span>
-        <div class="copy-row" onclick="copyText('Jewish Path', this)">
-          <span>Jewish Path</span>
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        </div>
-
-        <span class="field-label">Bank</span>
-        <div class="copy-row" onclick="copyText('JPMorgan Chase Bank, N.A.', this)">
-          <span>JPMorgan Chase Bank, N.A.</span>
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        </div>
-
-        <span class="field-label">Routing Number</span>
-        <div class="routing-group">
-          <div class="copy-row" onclick="copyText('021000021', this)">
-            <span>021000021 <span class="tag">Wire</span></span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          </div>
-          <div class="copy-row" onclick="copyText('071000013', this)">
-            <span>071000013 <span class="tag">ACH</span></span>
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          </div>
-        </div>
-
-        <span class="field-label">Account Number</span>
-        <div class="copy-row" onclick="copyText('668129359', this)">
-          <span>668129359</span>
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        </div>
-      </div>
-
     </div>
 
-  </div>
-</section>
-
-
-<!-- ══════════════════════ THANK YOU ══════════════════════ -->
-<section class="thank-you">
-
-  <p class="ty-eyebrow">From the Jewish Path family</p>
-  <h2>Thank you for being<br><em>part of this journey.</em></h2>
-
-  <div class="thank-you-cols">
-
-    <div class="ty-col">
-      <div class="ty-icon">📖</div>
-      <h4>To Our Learners</h4>
-      <p>
-        Every hour you invest in Torah, every mitzvah you embrace, every question
-        you carry into study — you are the heartbeat of Jewish Path. Your commitment
-        to growth is an inspiration to all of us, and a testament to the eternal
-        light of Am Yisrael. Keep walking the path. Tizku lemitzvos.
-      </p>
+    <div class="footer-legal">
+      Jewish Path is a registered 501(c)(3) nonprofit organization &nbsp;|&nbsp; EIN: 99-4241683<br>
+      All donations are tax-deductible to the extent permitted by law. &nbsp;|&nbsp; &copy; <span id="yr"></span> Jewish Path
     </div>
+  </footer>
 
-    <div class="ty-col">
-      <div class="ty-icon">🕊️</div>
-      <h4>To Our Donors</h4>
-      <p>
-        Your generosity is what makes the next shiur possible — the next program
-        launched, the next life transformed. You are true partners in Torah. Every
-        dollar you give fuels the expansion of our mission and lights the path for
-        souls yet to begin their journey. Yeyasher kochacha.
-      </p>
-    </div>
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
 
-  </div>
-</section>
+  <script>
+    const yearEl = document.getElementById('yr');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    function showToast(message) {
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
 
-<!-- ══════════════════════ CONTACT FORM ══════════════════════ -->
-<section class="contact-section">
-  <div class="contact-inner">
-    <p class="section-label" style="text-align:center;">Get in Touch</p>
-    <h2 class="section-title" style="text-align:center;">We'd love to<br>hear from you.</h2>
-    <div class="section-divider" style="margin:0 auto 1.25rem;"></div>
-    <p class="section-intro" style="text-align:center; margin:0 auto 0;">
-      Questions about programs, donations, or how to get involved?
-      Rabbi Arieh and our team are here to help.
-    </p>
+    async function copyToClipboard(value, button) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(value);
+        } else {
+          const temp = document.createElement('textarea');
+          temp.value = value;
+          temp.setAttribute('readonly', '');
+          temp.style.position = 'fixed';
+          temp.style.opacity = '0';
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand('copy');
+          document.body.removeChild(temp);
+        }
+        showToast('Copied');
+        if (button) {
+          const oldText = button.getAttribute('aria-label');
+          button.setAttribute('aria-label', 'Copied');
+          setTimeout(() => {
+            if (oldText) button.setAttribute('aria-label', oldText);
+          }, 900);
+        }
+      } catch (error) {
+        showToast('Please copy manually');
+      }
+    }
 
-    <!-- Formspree handles form submission on static sites.
-         Sign up free at formspree.io and replace YOUR_FORM_ID below. -->
-    <form class="contact-form reveal"
-          action="https://formspree.io/f/YOUR_FORM_ID"
-          method="POST">
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="fc-name">Full Name <span style="color:var(--rose);">*</span></label>
-          <input id="fc-name" type="text" name="name" placeholder="Your name" required>
-        </div>
-        <div class="form-group">
-          <label for="fc-phone">Phone Number <span style="color:var(--rose);">*</span></label>
-          <input id="fc-phone" type="tel" name="phone" placeholder="(000) 000-0000" required>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="fc-email">Email Address <span style="color:var(--rose);">*</span></label>
-        <input id="fc-email" type="email" name="email" placeholder="you@example.com" required>
-      </div>
-
-      <div class="form-group">
-        <label for="fc-message">Message</label>
-        <textarea id="fc-message" name="message" placeholder="How can we help you?"></textarea>
-      </div>
-
-      <button type="submit" class="btn-submit">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        Send Message
-      </button>
-    </form>
-  </div>
-</section>
-
-
-<!-- ══════════════════════ FOOTER ══════════════════════ -->
-<footer>
-
-  <!-- Prominent contact block -->
-  <div class="footer-contact">
-    <h3>Rabbi Arieh Zaslavsky</h3>
-    <p class="fc-title">Jewish Path — Torah Study &amp; Mitzvot Advancement</p>
-    <div class="footer-contact-links">
-      <a href="tel:7732173301">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.61 5a2 2 0 0 1 1.99-2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.09a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        773-217-3301
-      </a>
-      <a href="mailto:ariezaslavsky@gmail.com">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        ariezaslavsky@gmail.com
-      </a>
-    </div>
-  </div>
-
-  <!-- Legal line -->
-  <div class="footer-legal">
-    Jewish Path is a registered 501(c)(3) nonprofit organization &nbsp;·&nbsp; EIN: 99-4241683<br>
-    All donations are tax-deductible to the extent permitted by law. &nbsp;·&nbsp; © <span id="yr"></span> Jewish Path
-  </div>
-
-</footer>
-
-
-<div class="toast" id="toast">Copied ✓</div>
-
-
-<script>
-  document.getElementById('yr').textContent = new Date().getFullYear();
-
-  function copyText(text, el) {
-    navigator.clipboard.writeText(text).then(() => {
-      showToast('Copied ✓');
-      el.style.background = 'var(--rose-light)';
-      setTimeout(() => el.style.background = '', 900);
-    }).catch(() => showToast('Please copy manually'));
-  }
-
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2200);
-  }
-
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); }
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+      const value = button.getAttribute('data-copy') || '';
+      button.setAttribute('aria-label', 'Copy ' + value);
+      button.addEventListener('click', () => copyToClipboard(value, button));
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
+
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach((item) => observer.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add('revealed'));
+    }
+
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (event) => {
+        const action = contactForm.getAttribute('action') || '';
+        if (!action.includes('YOUR_FORM_ID')) return;
+        event.preventDefault();
+
+        const data = new FormData(contactForm);
+        const name = data.get('name') || '';
+        const phone = data.get('phone') || '';
+        const email = data.get('email') || '';
+        const message = data.get('message') || '';
+        const recipient = contactForm.dataset.contactEmail || 'ariezaslavsky@gmail.com';
+        const subject = encodeURIComponent('Jewish Path Website Inquiry');
+        const body = encodeURIComponent(
+          'Name: ' + name + '\n' +
+          'Phone: ' + phone + '\n' +
+          'Email: ' + email + '\n\n' +
+          'Message:\n' + message
+        );
+        showToast('Opening email app');
+        window.location.href = 'mailto:' + recipient + '?subject=' + subject + '&body=' + body;
+      });
+    }
+  </script>
 </body>
 </html>
