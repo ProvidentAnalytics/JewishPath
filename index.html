@@ -88,7 +88,7 @@
       animation: fadeUp 0.85s ease both;
     }
     .hero-logo {
-      width: min(92vw, 520px);
+      width: min(92vw, 390px);
       margin: 0 auto 2rem;
       object-fit: contain;
       filter: drop-shadow(0 18px 34px rgba(44, 44, 44, 0.06));
@@ -231,7 +231,7 @@
 
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 1.35rem;
     }
     .card {
@@ -292,6 +292,21 @@
       text-transform: uppercase;
     }
     .field-label:first-of-type { margin-top: 0; }
+
+    .card-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 54px;
+      margin-bottom: 1.1rem;
+    }
+    .card-logo-image {
+      display: block;
+      max-width: 100%;
+      width: 220px;
+      height: auto;
+      object-fit: contain;
+    }
     .copy-row {
       width: 100%;
       display: flex;
@@ -534,13 +549,16 @@
       50% { transform: translate(-50%, 7px); }
     }
 
+    @media (max-width: 1180px) {
+      .cards-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 900px) {
-      .cards-grid { grid-template-columns: 1fr; }
       .card { padding: 1.75rem 1.35rem; }
     }
     @media (max-width: 680px) {
+      .cards-grid { grid-template-columns: 1fr; }
       .hero { padding-top: 4.75rem; }
-      .hero-logo { width: min(92vw, 390px); margin-bottom: 1.5rem; }
+      .hero-logo { width: min(92vw, 293px); margin-bottom: 1.5rem; }
       .hero-actions { flex-direction: column; align-items: stretch; }
       .btn { width: 100%; }
       .section { padding: 4.35rem 1.1rem; }
@@ -627,6 +645,35 @@
             <p class="card-note" style="margin-top:1rem; font-style:italic;">
               Please include "Jewish Path donation" in the memo so a tax receipt can be sent.
             </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-logo-wrap">
+              <img class="card-logo-image" src="donors_fund_logo_transparent.png" alt="The Donors' Fund logo">
+            </div>
+            <h3>Donor's Fund</h3>
+            <p class="card-note">
+              If you prefer to give through Donor's Fund, please use the charity details below
+              when recommending or processing your contribution.
+            </p>
+
+            <span class="field-label">Tax ID (EIN)</span>
+            <button class="copy-row" type="button" data-copy="99-4241683">
+              <span>99-4241683</span>
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+
+            <span class="field-label">Charity Name</span>
+            <button class="copy-row" type="button" data-copy="Jewish Path">
+              <span>Jewish Path</span>
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+
+            <span class="field-label">Charity Address</span>
+            <button class="copy-row" type="button" data-copy="2609 W Lunt, Chicago, IL 60645">
+              <span>2609 W Lunt, Chicago, IL 60645</span>
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
           </article>
 
           <article class="card reveal">
